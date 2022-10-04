@@ -1,31 +1,32 @@
 # VerifyDate
-import java.text.*;
-import java.util.*;
-
-public class Main {
-   public static boolean check(String date)
-   {
-      // Set the preferred date format
-      SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
-      format.setLenient(false);
-      try
-      {
-          Date d = format.parse(date); 
-          System.out.println(date+" is a valid date");
-      }
-      // Invalid date
-      catch (ParseException e)
-      {
-          System.out.println(date+" is an invalid date");
-          return false;
-      }
-      // Returns true if the date is valid
-      return true;
-   }
-   
-   public static void main(String args[]){
-    check("07/25/2020");
-    check("07/25/0000");
-    check("07,25,2020");
-   }
+// method to handle potential checks against the dates
+public static Date CheckDates(Date date1, Date date2) {
+//if date2 is within the next 30 days of date1,use date2.Otherwise use the end of the month
+if(DateWithin30Days(date1,date2) {
+return date2;
+}else {
+return SetEndOfMonthDate(date1);
 }
+}
+
+//method to check if date2 is within the next 30 days of date1
+@TestVisible private static Boolen DateWithin30Days(Date date1,Date date2){
+//check for date2 being in the past
+if( date2 < date1) { return false; }
+
+//check that date2 is within (>=) 30 days of date1
+Date date30Days =date1.addDays(30);//create a date 30 days away from date1
+if( date2 >=date30Days ) {return false; }
+else { return true; }
+
+}
+
+//method to return the end of the month of a given date
+@TestVisibleprivate static  Date SetEndOfMonth(Date date1){
+Integer totalDays = Date.daysInMonth(date1.year(), date1.month());
+Date lastDay = Date.daysInMonth(date1.year(), date1.month(),totalDays);
+return lastDay;
+
+}
+}
+
